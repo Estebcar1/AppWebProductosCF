@@ -25,23 +25,35 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CategoriaID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CategoriaID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CategoriaID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @{
+                        if (item.Estado == true)
+
+                        {
+                            <span>activo</span>
+                        }
+                        else
+                        {
+                            <span> No AcTIVO </span>
+                        }
+                    }
+                    
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CategoriaID" class="btn btn-outline-success fas fa-edit"></a> |
+                    <a asp-action="Details" asp-route-id="@item.CategoriaID" class="btn btn-outline-info"><i class="far fa-newspaper"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.CategoriaID" class="btn btn-outline-danger"> <i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

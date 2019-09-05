@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-outline-primary"><i class="fas fa-user-edit"></i> Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -37,35 +37,44 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Codigo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio_venta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Stock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria.Nombre)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductoID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductoID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductoID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio_venta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @{ if (item.Estado == true)
+                        {
+                            <span>  Activo</span>
+                        }
+                        else
+                        {
+                            <span>  No Activo</span>
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria.Nombre)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProductoID" class="btn btn-outline-success"> <i class="fas fa-edit"></i></a> |
+                    <a asp-action="Details" asp-route-id="@item.ProductoID" class="btn btn-outline-info far fa-newspaper"></a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProductoID" class="btn btn-outline-danger fas fa-trash-alt"></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
